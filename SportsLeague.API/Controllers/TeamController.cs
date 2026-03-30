@@ -17,12 +17,11 @@ public class TeamController : ControllerBase
 
     public TeamController(
         ITeamService teamService,
-        IMapper mapper,
-        ILogger<TeamController> logger)
+        IMapper mapper)
     {
         _teamService = teamService;
         _mapper = mapper;
-        _logger = logger;
+
     }
 
     [HttpGet]

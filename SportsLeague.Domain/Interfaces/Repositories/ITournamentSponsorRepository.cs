@@ -8,7 +8,7 @@ namespace SportsLeague.Domain.Interfaces.Repositories
         Task<IEnumerable<TournamentSponsor>> GetByTournamentAsync(int tournamentId);
 
         
-        Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int sponsorId);//to allow a sponsor to have multiple tournaments
-
+        //Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int sponsorId);//to allow a sponsor to have multiple tournaments
+        
     }
 }

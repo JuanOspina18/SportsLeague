@@ -10,12 +10,9 @@ namespace SportsLeague.DataAccess.Repositories
         public SponsorRepository(LeagueDbContext context) : base(context)
         {
         }
-
-        public async Task<IEnumerable<Sponsor>> GetByNationalityAsync(string nationality)
+        public async Task<bool> ExistsByNameAsync(string name)
         {
-            return await _dbSet
-                .Where(r => r.Nationality.ToLower() == nationality.ToLower())
-                .ToListAsync();
+            return await _dbSet.AnyAsync(s => s.Name.ToLower() == name.ToLower());
         }
     }
 }

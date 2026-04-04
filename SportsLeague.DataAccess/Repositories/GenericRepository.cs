@@ -56,5 +56,10 @@ namespace SportsLeague.DataAccess.Repositories
         {
             return await _dbSet.AnyAsync(e => e.Id == id);
         }
+
+        public Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int sponsorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

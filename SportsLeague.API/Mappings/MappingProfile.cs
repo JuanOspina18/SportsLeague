@@ -9,27 +9,38 @@ namespace SportsLeague.API.Mappings
     {
         public MappingProfile()
         {
-            // Team mappings
+            // ── Team mappings ──
             CreateMap<TeamRequestDTO, Team>();
             CreateMap<Team, TeamResponseDTO>();
 
-            // Player mappings
+            // ── Player mappings ──
             CreateMap<PlayerRequestDTO, Player>();
             CreateMap<Player, PlayerResponseDTO>()
                 .ForMember(
                     dest => dest.TeamName,
                     opt => opt.MapFrom(src => src.Team.Name));
-            // Referee mappings
+
+            // ── Referee mappings ──
             CreateMap<RefereeRequestDTO, Referee>();
             CreateMap<Referee, RefereeResponseDTO>();
 
-            // Tournament mappings
+            // ── Tournament mappings ──
             CreateMap<TournamentRequestDTO, Tournament>();
             CreateMap<Tournament, TournamentResponseDTO>()
                 .ForMember(
                     dest => dest.TeamsCount,
                     opt => opt.MapFrom(src =>
                         src.TournamentTeams != null ? src.TournamentTeams.Count : 0));
+
+            // ── Sponsor mappings ──
+            CreateMap<SponsorRequestDTO, Sponsor>();
+            CreateMap<Sponsor, SponsorResponseDTO>();
+
+            // ── TournamentSponsor mappings
+            CreateMap<TournamentSponsor, TournamentSponsorResponseDTO>()
+                .ForMember(
+                    dest => dest.TournamentName,
+                    opt => opt.MapFrom(src => src.Tournament.Name));
         }
     }
 }

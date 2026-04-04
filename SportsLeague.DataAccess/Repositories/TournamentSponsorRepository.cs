@@ -15,13 +15,13 @@ public class TournamentSponsorRepository : GenericRepository<TournamentSponsor>,
             .FirstOrDefaultAsync(ts => ts.TournamentId == tournamentId && ts.SponsorId == sponsorId);
     }
 
-    /*public async Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int sponsorId)
+    public async Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int sponsorId)
     {
         return await _dbSet
             .Where(ts => ts.SponsorId == sponsorId)
             .Include(ts => ts.Tournament)
             .ToListAsync();
-    }*/
+    }
 
     public async Task<IEnumerable<TournamentSponsor>> GetByTournamentAsync(int tournamentId)
     {

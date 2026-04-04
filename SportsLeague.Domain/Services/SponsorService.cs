@@ -117,10 +117,7 @@ namespace SportsLeague.Domain.Services
             if (sponsor == null)
                 throw new KeyNotFoundException($"No se encontró el sponsor con ID {sponsorId}");
 
-            var allRelations = await _tournamentSponsorRepository.GetAllAsync();
-
-            return allRelations
-                .Where(ts => ts.SponsorId == sponsorId);
+            return await _tournamentSponsorRepository.GetBySponsorAsync(sponsorId);
         }
 
         public async Task UnlinkFromTournamentAsync(int sponsorId, int tournamentId)

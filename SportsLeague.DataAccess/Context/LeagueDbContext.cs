@@ -145,6 +145,28 @@ namespace SportsLeague.DataAccess.Context
                 entity.HasIndex(tt => new { tt.TournamentId, tt.TeamId })
                       .IsUnique();
             });
+            // Sponsor Configuration
+            modelBuilder.Entity<Sponsor>(entity =>
+            {
+                entity.HasKey(s => s.Id);
+
+                entity.Property(s => s.Name)
+                      .IsRequired()
+                      .HasMaxLength(150);
+
+                entity.Property(s => s.ContactEmail)
+                      .IsRequired()
+                      .HasMaxLength(150);
+
+                entity.Property(s => s.CreatedAt)
+                      .IsRequired();
+
+                entity.Property(s => s.UpdatedAt)
+                      .IsRequired(false);
+
+                entity.HasIndex(s => s.Name)
+                      .IsUnique();
+            });
             // ── TournamentSponsor Configuration ──
             modelBuilder.Entity<TournamentSponsor>(entity =>
             {

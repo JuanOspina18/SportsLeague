@@ -12,7 +12,7 @@ using SportsLeague.DataAccess.Context;
 namespace SportsLeague.DataAccess.Migrations
 {
     [DbContext(typeof(LeagueDbContext))]
-    [Migration("20260404000622_AddSponsor_TournamentSponsor")]
+    [Migration("20260405001635_AddSponsor_TournamentSponsor")]
     partial class AddSponsor_TournamentSponsor
     {
         /// <inheritdoc />
@@ -116,14 +116,16 @@ namespace SportsLeague.DataAccess.Migrations
 
                     b.Property<string>("ContactEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -135,6 +137,9 @@ namespace SportsLeague.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Sponsors");
                 });

@@ -28,11 +28,7 @@ namespace SportsLeague.Domain.Services
             if (match == null)
                 throw new KeyNotFoundException($"No se encontró el partido con ID {matchId}");
 
-            // V6 — El partido debe estar en estado Scheduled
-            if (match.Status != MatchStatus.Scheduled)
-                throw new InvalidOperationException(
-                    "Solo se pueden registrar alineaciones en partidos Scheduled");
-
+            
             // V2 — El jugador debe existir
             var player = await _playerRepository.GetByIdAsync(lineup.PlayerId);
             if (player == null)
@@ -57,6 +53,12 @@ namespace SportsLeague.Domain.Services
                     throw new InvalidOperationException(
                         "El equipo ya tiene 11 titulares registrados en este partido");
             }
+
+            // V6 — El partido debe estar en estado Scheduled
+            if (match.Status != MatchStatus.Scheduled)
+                throw new InvalidOperationException(
+                    "Solo se pueden registrar alineaciones en partidos Scheduled");
+
 
             lineup.MatchId = matchId;
             return await _lineupRepository.CreateAsync(lineup);
